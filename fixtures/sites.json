@@ -1,0 +1,18 @@
+[
+{
+  "fields": {
+    "domain": "motylki.edu.pl",
+    "name": "motylki.edu.pl"
+  },
+  "model": "sites.site",
+  "pk": 1
+},
+{
+  "fields": {
+    "domain": "dev.example.com:8000",
+    "name": "dev.example.com:8000"
+  },
+  "model": "sites.site",
+  "pk": 2
+}
+]

@@ -1,0 +1,14 @@
+{% load i18n sugar %}
+<ul>
+    {% for item in nav2_items %}
+        <li class="{% if item|lower == entry.main_tag or item|lower == tag.name %}current{% endif %}">
+            <a href="{% url 'zinnia:tag_detail' item %}" rel="tag">{{ item.name|no_dash }}</a>
+        </li>
+    {% empty %}
+        <li>
+            <a href="#">{% trans "No categories yet." %}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+

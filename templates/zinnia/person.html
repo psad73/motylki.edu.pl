@@ -1,0 +1,20 @@
+{% load comments i18n zinnia thumbnail %}
+<article class="{% if continue_reading %}teaser{% else %} page-content person{% endif %}">
+    {% with object.image as cover %}
+        {% if cover %}
+            <a class="person-cover" href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
+                {% thumbnail cover 200x200 crop upscale subject_location=cover.subject_location as cover %}
+                <img src="{{ cover.url }}" alt="{{ object.title }}" class=""/>
+            </a>
+        {% endif %}
+    {% endwith %}
+    <h1 class="entry-title">
+        <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">{{ object.title|widont }}</a>
+    </h1>
+    <div class="entry-content">
+        {{ object_content|safe }}
+    </div>
+</article>
+
+
+

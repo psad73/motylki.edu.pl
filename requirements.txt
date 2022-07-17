@@ -1,0 +1,46 @@
+# Core django + esentials
+Django
+gunicorn
+pytz
+djrill
+django_assets
+webassets
+yuicompressor
+BabelDjango
+markdown
+django-debug-toolbar
+pathlib
+django-bootstrap-form
+django-guardian
+
+# Images
+easy-thumbnails
+sorl-thumbnail
+django-reversion
+pillow
+django-filer
+
+# django-cms
+django-cms
+cmsplugin-filer
+djangocms-admin-style
+djangocms-column
+djangocms-style
+djangocms-flash
+djangocms-googlemap
+djangocms-inherit
+djangocms_text_ckeditor
+djangocms_file
+djangocms_link
+djangocms_picture
+djangocms_teaser
+djangocms_video
+djangocms_snippet
+djangocms-page-meta
+
+# django-blog-zinnia
+django-blog-zinnia
+cmsplugin_zinnia
+django-app-namespace-template-loader
+zinnia-theme-bootstrap
+zinnia-wysiwyg-ckeditor

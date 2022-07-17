@@ -1,0 +1,38 @@
+[
+{
+  "fields": {
+    "template_to_render": "cmsplugin_zinnia/entry_detail.html",
+    "tags": [
+      6
+    ],
+    "authors": [],
+    "number_of_entries": 10,
+    "featured": null,
+    "subcategories": true,
+    "offset": 0,
+    "categories": [
+      6
+    ]
+  },
+  "model": "cmsplugin_zinnia.latestentriesplugin",
+  "pk": 22
+},
+{
+  "fields": {
+    "template_to_render": "cmsplugin_zinnia/entry_detail.html",
+    "tags": [
+      6
+    ],
+    "authors": [],
+    "number_of_entries": 10,
+    "featured": null,
+    "subcategories": true,
+    "offset": 0,
+    "categories": [
+      6
+    ]
+  },
+  "model": "cmsplugin_zinnia.latestentriesplugin",
+  "pk": 26
+}
+]

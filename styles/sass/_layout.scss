@@ -1,0 +1,406 @@
+@import "compass";
+@import "bootstrap_variables";
+@import "bootstrap/mixins/image";
+@import "bootstrap/mixins/grid";
+//@import "bootstrap/mixins/center-block";
+//@import "bootstrap/utilities";
+@import "compass/utilities/sprites";
+@import "../images/bg/*.png";
+$bg-sprite-map: sprite-map("../images/bg/*.png");
+
+html {
+  // always visible schoolbar to remove flicker effect
+  // when switching between long/short pages
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+body {
+  .editing {
+    div.navbar {
+      margin-top: 35px;
+    }
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+  p {
+    font-size: $font-size-base + 2;
+  }
+}
+
+$margin-default: floor($line-height-computed * 2);
+$margin-top: $margin-default;
+$margin-bottom: $margin-default / 2;
+$padding-section: $jumbotron-padding;
+$padding-bottom-paragraph: $line-height-computed / 2;
+
+$padding-top-header: $margin-top;
+$padding-top-header-sm: $padding-top-header;
+
+#root > header {
+  padding-top: $padding-top-header;
+  padding-bottom: $line-height-computed * 2;
+
+  a#logo {
+    @include make-sm-column(7);
+    @include make-md-column(6);
+    @include make-lg-column(5);
+    img {
+      @include img-responsive();
+    }
+  }
+  a#slogan {
+    display: inline-block;
+    position: relative;
+  }
+
+  @media (max-width: $screen-sm-max) {
+    // swithc to fixed navbar
+    padding-top: $padding-top-header-sm + $navbar-height;
+    #navbar-wrap {
+      display: none;
+    }
+    a#logo img {
+      max-height: 130px;
+    }
+  }
+  $slogan-height: 36px;
+  $slogan-full-height: $padding-top-header-sm * 2 + $slogan-height;
+  @media (max-width: $screen-xs-max) {
+    a#logo, .content, {
+      display: none;
+    }
+    padding: $navbar-height 0 0 0;;
+  }
+
+  .content {
+    @include make-sm-column(17);
+    @include make-md-column(18);
+    @include make-lg-column(19);
+    .inner {
+      @include make-row();
+      $info-height: 180px - $navbar-height - 1px - $slogan-height;
+      .info {
+        top: - $slogan-height;
+        height: $info-height;
+        @include make-sm-column(24);
+        @include make-md-column(16);
+      }
+      #slogan {
+        padding-left: $grid-gutter-width / 2;
+        padding-right: $grid-gutter-width / 2;
+        top: $info-height - ($line-height-computed / 3);
+      }
+      aside {
+        margin-top: -$slogan-height;
+        @include make-md-column(8);;
+        padding-bottom: 45px;
+        @media (max-width: $screen-sm-max) {
+          display: none;
+        }
+        text-align: right;
+        .flags {
+          margin-top: $line-height-computed;
+        }
+        a, a:link, a:hover {
+          color: #02783D;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  #search {
+    position: absolute;
+    bottom: 0;
+    right: $grid-gutter-width /2;
+    padding-left: 28px;
+    height: 25px;
+    @include bg-sprite(search-l);
+    input {
+      border: none;
+      margin: 0;
+      height: 25px;
+      padding: 2px;
+      width: 169px;
+      @include bg-sprite(search-r);
+      &:focus {
+        border: none;
+        outline: 0;
+      }
+    }
+  }
+
+  #login, .flagi, #search {
+    @media (max-width: $screen-sm-max) {
+      display: none !important;
+    }
+  }
+
+  #navbar-wrap {
+    height: 40px;
+    @include make-sm-column(24);
+    @include make-md-column(18);
+    @include make-lg-column(19);
+    .navbar {
+      margin-bottom: 0;
+    }
+
+  }
+
+  .navbar-brand {
+    img {
+      margin: -4px 0;
+      width: 28px;
+      height: 28px;
+      float: left;
+    }
+    span {
+      margin-left: 8px;
+    }
+  }
+}
+
+section#alerts {
+  position: fixed;
+  top: $margin-default;
+  width: 100%;
+  z-index: 1000;
+}
+
+.main-inner {
+  padding-bottom: $margin-default;
+}
+
+.row-inner{
+  //height: 100%;
+  //display: table;
+  //width: 100%;
+  //@include clearfix;
+}
+
+.main .content {
+  @include make-sm-column(17);
+  @include make-md-column(12);
+  @include make-lg-column(13);
+  @include make-sm-column-push(7);
+  @include make-md-column-push(6);
+  @include make-lg-column-push(5);
+  //display: table-cell;
+  //height: 100%;
+  //min-height: 450px;
+}
+
+nav.nav2 {
+  @include make-sm-column(7);
+  @include make-md-column(6);
+  @include make-lg-column(5);
+  @include make-sm-column-pull(17);
+  @include make-md-column-pull(12);
+  @include make-lg-column-pull(13);
+  //display: table-cell;
+  //height: 100%;
+
+  .affix {
+    top: $padding-top-header + $line-height-computed * 2;
+  }
+  .affix, .affix-bottom {
+    @media (max-width: $screen-sm-max) {
+      //width: $container-sm / 24 * 7 - $grid-gutter-width;;
+      position: static !important;
+      width: auto;
+      top: $padding-top-header + $line-height-computed * 2;
+    }
+    @media (min-width: $screen-md-min) {
+      width: $container-md / 4 - $grid-gutter-width;
+    }
+    @media (min-width: $screen-lg-min) {
+      width: $container-lg / 24 * 5 - $grid-gutter-width;
+    }
+  }
+  .affix-bottom {
+    position: absolute;
+  }
+  h2 {
+    display: none;
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      margin-left: 0;
+      @include bg-sprite(podmenu_nieaktywny);
+      &:hover {
+        @include bg-sprite(podmenu_najazd);
+      }
+      a {
+        text-decoration: none;
+        color: #090909;
+        text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
+        text-transform: lowercase;
+        font-size: 15px;
+        display: block;
+        margin-top: 3px;
+        padding: 4px 10px 6px;
+        width: 190px;
+        height: 30px;
+      }
+      &.current {
+        @include bg-sprite(podmenu_aktywny_lewy);
+        a {
+          font-size: 18px;
+          width: 225px;
+          height: 48px;
+          padding: 10px 10px 14px;
+          margin-top: 5px;
+          margin-bottom: 2px;
+          letter-spacing: normal;
+          @include bg-sprite(podmenu_aktywny_prawy);
+          background-position: sprite-position($bg-sprite-map, podmenu_aktywny_prawy, 25px);
+          @media (max-width: $screen-sm-max) {
+            font-size: 16px;
+            width: 203px;
+            background-position: sprite-position($bg-sprite-map, podmenu_aktywny_prawy, 3px);
+            padding-top: 11px
+          }
+
+        }
+      }
+    }
+  }
+
+}
+
+$footer-height: 360px;
+$footer-margin: $padding-bottom-paragraph;
+$footer-bottom-padding: 0;
+$footer-border-width: 1px;
+$opp-background-color: #5ec4ec;
+$opp-border-color: darken($opp-background-color, 10%);
+$footer-background-color: #99cf17;
+$footer-border-color: darken($footer-background-color, 10%);
+$footer-shim-height: $footer-height + $footer-border-width + $footer-bottom-padding + $footer-margin;
+
+@import "compass/layout";
+
+// For footer to have some padding the footer-shim wold have to have
+// height = $footerHeight + $footerMargin
+// cannot do with current sticky-footer, implement new one if neded
+//@include sticky-footer($footerShinHeight, "#root", "#footer-shim", "footer");
+
+// Ember wraps everything in a div
+body > .ember-view {
+  height: 100%;
+}
+
+#footer-shim {
+  margin-top: $footer-margin;
+}
+
+footer {
+  //  color: #EEE;
+  position: relative;
+  padding: $padding-section 0 $footer-bottom-padding;
+  border-top: $footer-border-width solid $footer-border-color;
+  text-align: left;
+  background: $footer-background-color;
+  a, a:visited {
+    color: #000;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #000;
+  }
+  ul {
+    padding-left: 17px;
+  }
+  @media (max-width: $screen-sm-max) {
+    ul, h2 {
+      padding-left: $padding-section;
+    }
+  }
+}
+
+footer {
+  .authors {
+    bottom: 0;
+    padding-top: $line-height-computed;
+    .tools {
+      float: right;
+    }
+    p, a, a:visited, a:hover {
+      color: darken($footer-background-color, 20%);
+    }
+    @media (max-width: $screen-sm-max) {
+      .tools {
+        display: none;
+      }
+      p {
+        padding-left: $padding-section;
+      }
+    }
+
+  }
+}
+
+$footer-spacing: $padding-section + $line-height-computed;
+$map-gradient-start: #E0E0E0;
+$map-gradient-stop: #FFF 30px;
+.opp {
+  @include background-image(linear-gradient($map-gradient-start, $map-gradient-stop, #FFF));;
+  position: relative;
+  border-top: $footer-border-width solid #999;
+  text-align: left;
+  //  background: $opp-background-color;
+  .row > div {
+    display: table;
+      margin: $footer-spacing 0;;
+    > a, a:link, a:visited, a:hover {
+      display: table-cell;
+      vertical-align: middle;
+      height: 164px;
+      color: $text-color;
+      text-decoration: none;
+    }
+  }
+  div:last-child a {
+    padding-left: $grid-gutter-width;;
+    ul {
+      padding-left: 15px;
+    }
+  }
+}
+
+.mapa {
+  a {
+    border-top: $footer-border-width solid #999;
+    display: block;height: 350px;
+    width: 100%;
+    background: image-url("mapa.jpg") center;
+  }
+}
+
+.partners {
+  @include background-image(linear-gradient(to top, $map-gradient-start, $map-gradient-stop, #FFF));
+  background-color: #FFF;;
+  border-top: 1px solid #ddd;
+  margin-top: $footer-spacing;
+  padding-bottom: $footer-spacing;
+  padding-top: $footer-spacing;
+  p {
+    line-height: 70px;
+    text-align: center;
+    a {
+      display: inline-block;
+      padding: 10px;
+    }
+  }
+}
+
+section.row {
+  margin-top: $grid-gutter-width / 2;
+}

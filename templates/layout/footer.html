@@ -1,0 +1,104 @@
+{% load cms_tags staticfiles %}
+<div class="partners" style="display: none">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-24">
+                {% static_placeholder "partnerzy" or %}
+                    <p>
+                        <a href="/partnerzy/"><img src="{% static "assets/images/partnerzy/ceo.100.jpg" %}"></a>
+                        <a href="/partnerzy/"><img src="{% static "assets/images/partnerzy/advantage.100.png" %}"></a>
+                        <a href="/partnerzy/"><img src="{% static "assets/images/partnerzy/kpn.100.png" %}"></a>
+                        <a href="/partnerzy/"><img src="{% static "assets/images/partnerzy/dziekanow.100.jpg" %}"></a>
+                        <a href="/partnerzy/"><img src="{% static "assets/images/partnerzy/szk.100.jpg" %}"></a>
+                        <a href="/partnerzy/"><img src="{% static "assets/images/partnerzy/wis.100.png" %}"></a>
+                        <a href="/partnerzy/"><img src="{% static "assets/images/partnerzy/szbp.100.jpg" %}"></a>
+                        <a href="/partnerzy/"><img src="{% static "assets/images/partnerzy/scrable.100.png" %}"></a>
+                    </p>
+                {% endstatic_placeholder %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mapa">
+    <a href="/kontakt"></a>
+</div>
+<div class="opp" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-push-8 col-sm-16 col-sm-push-8">
+                <a href="/1procent">
+                    {% static_placeholder "opp_opis" or %}
+                        <p>PSPO jest Organizacją Pożytku Publicznego</p>
+
+                        <p>Zapraszamy do przekazania 1% podatku na działalność edukacyjną naszego stowarzyszenia.</p>
+
+                        <p>KRS: <strong>0000050337</strong><br/>
+
+                        <p>Nr konta: <strong>21 1240 6410 1111 0010 6008 6214</strong></p>
+                    {% endstatic_placeholder %}
+                </a>
+            </div>
+            <div class="col-md-6 col-md-pull-10 col-sm-8 col-sm-pull-16">
+                <a href="/1procent">
+                    <img class="img-responsive" src="{% static "assets/images/opp.250.png" %}"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-24">
+                {% static_placeholder "footer_col_1" or %}
+                    <h2>Informacje</h2>
+                    <ul>
+                        <li><a href="/posilki/">Posiłki</a></li>
+                        <li><a href="/rekrutacja/rzeczy-przedszkolaka/">Wyprawka</a></li>
+                    </ul>
+                {% endstatic_placeholder %}
+
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-24">
+                {% static_placeholder "footer_col_2" or %}
+                    <h2>Rekrutacja</h2>
+                    <ul>
+                        <li><a href="/rekrutacja/karta-zgloszeniowa/">Zgłoszenie</a></li>
+                    </ul>
+                {% endstatic_placeholder %}
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-24">
+                {% static_placeholder "footer_col_3" or %}
+                    <div id="fb-root"></div>
+                    <div class="fb-page" data-href="https://www.facebook.com/pages/Motylkowa-Akademia/216956288321718" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/pages/Motylkowa-Akademia/216956288321718"><a href="https://www.facebook.com/pages/Motylkowa-Akademia/216956288321718">Motylkowa Akademia</a></blockquote></div></div>
+                {% endstatic_placeholder %}
+            </div>
+        </div>
+    </div>
+    <div class="authors">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-md-24">
+                    <p>
+                        ©<a href="http://www.motylki.edu.pl/">PSPO</a> | Projekt: <a href="/">Adam Żebrowski</a> | Wykonanie: <a
+                            href="http://www.BraveLabs.pl/">Brave
+                        Labs</a>
+                    <span class="tools">
+                        <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">CSS</a> |
+                        <a href="http://validator.w3.org/check/referer">XHTML</a> |
+                        {% if object.main_tag %}
+                            <a rel="nofollow" href="{% url 'admin:zinnia_entry_change' object.pk %}">Edytuj wpis</a> |
+                        {% else %}
+                            <a rel="nofollow" href="?edit">Edytuj stronę</a> |
+                        {% endif %}
+                        <a rel="nofollow" href="{% url 'admin:zinnia_entry_add' %}">Dodaj artykuł</a>
+                    </span>
+                </div>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+

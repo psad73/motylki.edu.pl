@@ -1,0 +1,26 @@
+{% load cms_tags %}
+<div class="inner">
+    <aside>
+        <div id="rekrutacja">
+            {% static_placeholder "zapisy" or %}
+                <a href="/rekrutacja"><span class="callout">Zapisy</span> <span class="small">na rok szkolny</span> <span
+                        class="year">2015/2016</span></a>
+            {% endstatic_placeholder %}
+        </div>
+    </aside>
+
+    <aside>
+        <div id="notify" class="gfrb" title="Podaj email i wciśnij Enter">
+            <div>
+                <h3><span class="callout">Powiadom</span> mnie o rekrutacji</h3>
+
+                <form id="Subscription" method="post" action="http://www.pspo.edu.pl/rekrutacja/dodaj/">
+                    {% csrf_token %}
+                    <input type="hidden" name="school" value="przedszkole">
+                    <input type="email" id="email" name="email" class="email" required placeholder="wpisz swój adres email" data-cip-id="email">
+                    <button id="submit" type="submit">Wyślij</button>
+                </form>
+            </div>
+        </div>
+    </aside>
+</div>

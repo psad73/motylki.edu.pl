@@ -1,0 +1,25 @@
+{% load cms_tags thumbnail filer_tags filer_image_tags sugar %}
+<article class="teaser">
+    <div class="row">
+        {% if teaser.pagemeta.image %}
+            <div class="col-sm-8 col-xs-6">
+                <div class="teaser-cover">
+                    {% load page_meta_tags %}
+                    {% thumbnail teaser.pagemeta.image 261x261 crop=opts.crop upscale=opts.upscale as thumbnail %}
+                    <img class="img-responsive" src="{{ thumbnail.url }}"/>
+                </div>
+            </div>
+            <div class="col-sm-16 col-xs-18">
+                <h2><a id="page-{{ teaser.id }}" href="{% page_url teaser %}">{% page_attribute "title" teaser %}</a></h2>
+                {% tease_placeholder "page_content" teaser 35 %}
+                <a class="read-more" href="{% page_url teaser %}">Czytaj dalej &raquo;</a>
+            </div>
+        {% else %}
+            <div class="col-sm-24">
+                <h2><a id="page-{{ teaser.id }}" href="{% page_url teaser %}">{% page_attribute "title" teaser %}</a></h2>
+                {% tease_placeholder "page_content" teaser 35 %}
+                <a class="read-more" href="{% page_url teaser %}">Czytaj dalej &raquo;</a>
+            </div>
+        {% endif %}
+    </div>
+</article>

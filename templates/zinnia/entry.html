@@ -1,0 +1,43 @@
+{% load comments i18n zinnia thumbnail %}
+<article>
+    {% if object.image %}
+        <a class="entry-cover" href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
+            {% thumbnail object.image 897x598 crop upscale subject_location=object.image.subject_location as cover %}
+            <img src="{{ cover.url }}" alt="{{ object.title }}" class=""/>
+        </a>
+    {% endif %}
+    <h1 class="entry-title">
+        <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">{{ object.title|widont }}</a>
+    </h1>
+    <div class="entry-content">
+        {{ object_content|safe }}
+    </div>
+    {% if object.gallery %}
+    <h2>Zdjęcia</h2>
+        {% with object.gallery.files as images %}
+            {% include 'snipptes/gallery.html' %}
+        {% endwith %}
+    {% endif %}
+    <small class="entry-info">
+        <time class="published" datetime="{{ object.creation_date|date:"c" }}" pubdate="pubdate">{{ object.creation_date|date:"DATE_FORMAT" }}</time>
+        {% with authors=object.authors.all %}
+            {% if authors|length %}
+                -
+                {% for author in authors %}
+                    <span class="vcard author"><a href="{{ author.get_absolute_url }}" class="fn url" rel="author">{{ author }}</a></span>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% with categories=object.categories.all %}
+            {% if categories|length %}
+                :
+                {% for category in categories %}
+                    <a href="{{ category.get_absolute_url }}" rel="tag category">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% for tag in object.tags_list %}
+            <a href="{% url 'zinnia:tag_detail' tag %}" rel="tag">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </small>
+</article>

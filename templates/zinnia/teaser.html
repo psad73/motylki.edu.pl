@@ -1,0 +1,56 @@
+{% load comments i18n zinnia %}
+<article class="teaser">
+    {% if object.image and not object.gallery %}
+        <a class="teaser-cover" href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
+            {% load thumbnail %}
+            <img src="{% thumbnail object.image 328x213 crop upscale subject_location=obj.image.subject_location %}" alt="{{ object.title }}"
+                 class=""/>
+        </a>
+    {% endif %}
+    <h2 class="entry-title">
+        <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">{{ object.title|widont }}</a>
+    </h2>
+    <div class="entry-content">
+        {{ object_content|safe }}
+    </div>
+    {% if not object.gallery %}
+        <a class="read-more" href="{{ object.get_absolute_url }}">Więcej »</a>
+    {% else %}
+        <a class="read-more" href="{{ object.get_absolute_url }}">Czytaj dalej i zobacz cały album » </a>
+        <div class="gallery">
+            {% load thumbnail %}
+            {% for image in object.preview_gallery %}
+                {% thumbnail image 218x218 crop upscale subject_location=obj.image.subject_location as prev %}
+                <a class="image" rel="lightbox" href="{{ object.get_absolute_url }}">
+                    <img width="146" height="146" src="{{ prev.url }}">
+                </a>
+            {% endfor %}
+        </div>
+
+    {% endif %}
+
+    <small class="entry-info">
+        <time class="published" datetime="{{ object.creation_date|date:"c" }}" pubdate="pubdate">{{ object.creation_date|date:"DATE_FORMAT" }}</time>
+        {% with authors=object.authors.all %}
+            {% if authors|length %}
+                -
+                {% for author in authors %}
+                    <span class="vcard author"><a href="{{ author.get_absolute_url }}" class="fn url" rel="author">{{ author }}</a></span>
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% with categories=object.categories.all %}
+            {% if categories|length %}
+                :
+                {% for category in categories %}
+                    <a href="{{ category.get_absolute_url }}" rel="tag category">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% for tag in object.tags_list %}
+            <a href="{% url 'zinnia:tag_detail' tag %}" rel="tag">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+
+    </small>
+</article>

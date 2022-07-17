@@ -1,0 +1,21 @@
+{% load i18n static staticfiles thumbnail %}
+
+{% with folder_images as images %}
+
+    <div class="slider-container flexslider">
+        <div class="slider">
+            <ul class="slides">
+                {% for image in images %}
+                    <li class="slide slide-{{ forloop.counter }}">
+                        {% thumbnail image 1143x598 crop upscale subject_location=entry.image.subject_location as cover %}
+                        <img height="598" width="1143" src="{{ cover.url }}" alt="{{ image.name }}" class=""/>
+                        <div class="slide-content">
+                            <h2>{{ image.name }}</h2>
+                            {{ image.description|safe|linebreaks|truncatewords_html:30 }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endwith %}

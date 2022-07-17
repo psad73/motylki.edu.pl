@@ -1,0 +1,9 @@
+{% load comments i18n zinnia %}
+{% if continue_reading %}
+    {% include "zinnia/teaser.html" %}
+{% else %}
+    {% include "zinnia/entry.html" %}
+{% endif %}
+
+
+

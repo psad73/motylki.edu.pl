@@ -1,0 +1,25 @@
+{% extends "layout/page.html" %}
+{% load zinnia i18n %}
+{% block page_title %}{% block title %}{% endblock title %}{% block title-page %}{% endblock title-page %}{% endblock %}
+{% block description %}{% block meta-description %}Aktualności PSPO. {% endblock meta-description %}{% block meta-description-page %}
+{% endblock meta-description-page %}{% endblock %}
+{% block keywords %}{% block meta-keywords %}Liceum, Gimnazjum, Szkoa Postawowa, Przedszkole, PSPO, Lotników Amerykańskich
+{% endblock meta-keywords %}{% endblock %}
+{% block author %}PSPO{% endblock %}
+
+{% block head %}
+    {% block meta %}{% endblock meta %}
+    <link rel="pingback" href="/xmlrpc/"/>
+{% endblock %}
+{% block body-class %}zinnia {% endblock %}
+
+{% block page-content %}
+    {% block slider %}{% endblock %}
+    {% block content %}{% endblock %}
+{% endblock %}
+
+{% block menu %}
+    <h2>Zinnia Menu</h2>
+    {% get_tags as nav2_items %}
+    {% include "zinnia/tag_menu.html" %}
+{% endblock %}

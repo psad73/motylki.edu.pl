@@ -1,0 +1,6 @@
+
+{#<h2>{% firstof object.title object.folder.name %}</h2>#}
+
+{% with folder_images as images %}
+    {% include 'snipptes/gallery.html' %}
+{% endwith %}

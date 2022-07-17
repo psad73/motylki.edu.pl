@@ -1,0 +1,33 @@
+{% extends "layout/base.html" %}
+{% load menu_tags %}
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="row-inner">
+            <div class="content">
+                {% block page-content %}{% endblock %}
+            </div>
+            <nav class="nav2 hidden-xs">
+                <div data-spy="affix" data-offset-top="0" data-offset-bottom="930">
+                <h2>Menu</h2>
+                <ul>
+                    {% show_menu 0 1 1 1 "menu/menu2.html" %}
+                </ul>
+                {% block menu %}{% endblock %}
+                </div>
+            </nav>
+            <div id="hero-sidebar" class="" >
+                <div data-spy="affix" data-offset-top="0" data-offset-bottom="930">
+                    <nav style="display: none">
+                    <ul>
+                        {% show_menu 0 10 10 10 "menu/menu2.html" %}
+                    </ul>
+                    </nav>
+                    {% include "layout/sidebar.html" %}
+                    {% block sidebar %}{% endblock %}
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

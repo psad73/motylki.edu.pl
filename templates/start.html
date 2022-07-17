@@ -1,0 +1,35 @@
+{% extends "layout/base.html" %}
+{% load cms_tags menu_tags staticfiles sugar %}
+{% block fold %}
+    {#    {% include "carousel.html" %}#}
+{% endblock %}
+{% block main %}
+    <div class="container start">
+        <div class="row">
+            <div class="col-md-24">
+                {% placeholder "start_hero" %}
+            </div>
+        </div>
+        {% placeholder "start_news" %}
+        <section class="home-news">
+            {% front_page_news %}
+        </section>
+        <div class="row">
+            <div class="col-md-24">
+                <div class="content">
+                    {% placeholder "content2" %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                    {% placeholder "content2" %}
+            </div>
+            <div class="col-md-9">
+                    {% placeholder "content2" %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

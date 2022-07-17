@@ -1,0 +1,40 @@
+{% extends "zinnia:zinnia/entry_detail_base.html" %}
+{% load i18n zinnia static %}
+
+{% block content %}
+    {% include object.content_template with object_content=object.html_content %}
+{% endblock %}
+
+{% block meta %}
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="{{ object.title }}"/>
+    <meta property="og:url" content="http://www.motylki.edu.pl/{{ object.get_absolute_url }}"/>
+    {% if object.image %}
+        <meta property="og:image" content="http://www.motylki.edu.pl/{{ object.image.url }}"/>
+    {% elif object.gallery %}
+        <meta property="og:image" content="http://www.motylki.edu.pl/{{ object.gallery.files.1.url }}"/>
+    {% else %}
+        <meta property="og:image" content="http://www.motylki.edu.pl/{% static "assets/images/cover.png" %}"/>
+    {% endif %}
+    <meta property="og:description" content="{{ object.teaser.html_preview }}"/>
+    <meta property="og:site_name" content="PSPO. Liceum, Gimnazjum i Szkoła podstawowa"/>
+    <meta property="fb:admins" content="755854843"/>
+
+    <meta property="og:email" content="sekretariat@motylki.edu.pl"/>
+    <meta property="og:phone_number" content="+48 22 835 43 30"/>
+    <meta property="og:street-address" content="ul. Wóycickiego 1/3"/>
+    <meta property="og:locality" content="Warszawa"/>
+    <meta property="og:region" content="MAZ"/>
+
+{% endblock %}
+
+{% block admin-tools %}
+    {% if perms.zinnia.change_entry %}
+        <li class="list-group-item">
+            <a href="{% url 'admin:zinnia_entry_change' object.pk %}" title="{% trans "Edit the entry" %}">
+                <span class="glyphicon glyphicon-edit"></span>
+                {% trans "Edit the entry" %}
+            </a>
+        </li>
+    {% endif %}
+{% endblock admin-tools %}

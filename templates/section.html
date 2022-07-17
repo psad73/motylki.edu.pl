@@ -1,0 +1,38 @@
+{% extends "layout/page.html" %}
+{% load cms_tags menu_tags staticfiles thumbnail %}
+
+{% block page-content %}
+    {% with request.current_page as object %}
+        {% with object.pagemeta.image as cover %}
+            <article class="page-content {% if not cover %}no-cover{% endif %}">
+                {% if cover %}
+                    <a class="entry-cover" href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
+                        {% thumbnail cover 897x598 crop upscale subject_location=cover.subject_location as cover %}
+                        <img src="{{ cover.url }}" alt="{{ object.title }}" class=""/>
+                    </a>
+                {% endif %}
+                <h1 class="entry-title ">
+                    <a href="{{ object.get_absolute_url }}" title="{% page_attribute title %}" rel="bookmark">{% page_attribute title %}</a>
+                </h1>
+
+                {% placeholder "page_content" or %}
+                    <p>Boska treść, błyszcząca mądrością i humorem</p>
+                    {% include "snipptes/lorem.html" %}
+                    {% include "snipptes/typography.html" %}
+                {% endplaceholder %}
+            </article>
+        {% endwith %}
+
+        {% block page-bottom %}
+            {% for teaser in object.get_children %}
+                {% if teaser.publication_date %}
+                    {% include "layout/teaser.html" %}
+                {% endif %}
+            {% endfor %}
+        {% endblock %}
+
+
+    {% endwith %}
+{% endblock %}
+
+

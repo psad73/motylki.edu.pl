@@ -1,0 +1,31 @@
+{% extends "layout/page.html" %}
+{% load cms_tags menu_tags staticfiles thumbnail zinnia %}
+
+{% block page-content %}
+    {% with request.current_page as object %}
+        <article class="page-content person">
+            {% with object.pagemeta.image as cover %}
+                {% if cover %}
+                    <a class="person-cover" href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
+                        {% thumbnail cover 218x218 crop upscale subject_location=cover.subject_location as cover %}
+                        <img src="{{ cover.url }}" alt="{{ object.title }}" class=""/>
+                    </a>
+                {% endif %}
+            {% endwith %}
+            <h1 class="entry-title">
+                <a href="{{ object.get_absolute_url }}" title="{% page_attribute title %}" rel="bookmark">{% page_attribute title %}</a>
+            </h1>
+            {% placeholder "page_content" or %}
+                <p>Boska treść, błyszcząca mądrością i humorem</p>
+                {% include "snipptes/lorem.html" %}
+                {% include "snipptes/typography.html" %}
+            {% endplaceholder %}
+        </article>
+
+        {% for teaser in object.get_children %}
+            {% include "layout/teaser.html" %}
+        {% endfor %}
+    {% endwith %}
+{% endblock %}
+
+

@@ -1,0 +1,26 @@
+{% load i18n staticfiles thumbnail %}
+{% if entries %}
+<div class="row clearfix">
+<div class="slider-container flexslider">
+  <div class="slider">
+    <ul class="slides">
+      {% for entry in entries %}
+      <li class="slide slide-{{ forloop.counter }}">
+        <a class="entry-cover" href="{{ entry.get_absolute_url }}" title="{{ entry.title }}">
+            {% thumbnail entry.image 897x598 crop upscale subject_location=entry.image.subject_location as cover %}
+            <img src="{{ cover.url }}" alt="{{ object.title }}" class=""/>
+        </a>
+        <div class="slide-content">
+          <h2>
+            <a href="{{ entry.get_absolute_url }}" rel="bookmark"
+               title="{{ entry.title }}">{{ entry.title }}</a>
+          </h2>
+          {{ entry.excerpt|safe|linebreaks|truncatewords_html:30 }}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+</div>
+{% endif %}

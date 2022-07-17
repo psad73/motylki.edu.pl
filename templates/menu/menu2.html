@@ -1,0 +1,15 @@
+{% load i18n menu_tags cache %}
+
+{% for node in children %}
+    {% if node.ancestor or node.selected or node.parent %}
+        {% if node.get_menu_title != "Aktualności" %}
+            <li class="{% if node.ancestor %}ancestor{% endif %}{% if node.selected %} current{% endif %}{% if node.children %} dropdown{% endif %}">
+                <a class="{% if not node.children %}no-ch{% endif %}" href="{{ node.get_absolute_url }}"><span>{{ node.get_menu_title }}</span></a>
+            </li>
+            {% if node.children %}
+                {% show_menu from_level to_level extra_inactive extra_active template "" "" node %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+

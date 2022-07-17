@@ -1,0 +1,21 @@
+{% load thumbnail %}
+{% for object in object_list %}
+    <div class="teaser">
+        <div>
+            <div>
+                {% with object.cover as img %}
+
+                    <a class="cover" href="{{ object.get_absolute_url }}">
+                        <img width="231" height="153" class="visible-lg" src="{% thumbnail img 231x153 crop upscale subject_location=img.subject_location%}">
+                        <img width="275" height="182" class="visible-md" src="{% thumbnail img 275x182 crop upscale subject_location=img.subject_location%}">
+                        <img width="323" height="214" class="visible-sm" src="{% thumbnail img 323x214 crop upscale subject_location=img.subject_location%}">
+                        <img width="708" height="469" class="visible-xs" src="{% thumbnail img 708x469 crop upscale subject_location=img.subject_location%}">
+                    </a>
+                {% endwith %}
+                <h2><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h2>
+                {{ object.html_preview|safe }}
+            </div>
+            <a class="more" href="{{ object.get_absolute_url }}">Więcej <i class="glyphicon glyphicon-arrow-right"></i></a>
+        </div>
+    </div>
+{% endfor %}

@@ -1,0 +1,23 @@
+{% load i18n menu_tags cache %}
+
+{% for node in children %}
+
+    <li class="{% if node.ancestor or node.selected %}active{% endif %}{% if node.children %} dropdown{% endif %}">
+        {% if node.children %}
+            <a class="dropdown-toggle" data-toggle="dropdown" href="{{ node.get_absolute_url }}" role="button" aria-expanded="false">
+                {{ node.get_menu_title }}<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="{% if node.selected %}active{% endif %}">
+                    <a class="no-ch" href="{{ node.get_absolute_url }}"><span>{{ node.get_menu_title }}</span></a>
+                    {% show_menu from_level to_level extra_inactive extra_active template "" "" node %}
+                </li>
+            </ul>
+        {% else %}
+            <a class="no-ch" href="{{ node.get_absolute_url }}"><span>{{ node.get_menu_title }}</span></a>
+        {% endif %}
+    </li>
+
+    {% if class and forloop.last and not forloop.parentloop %}
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,118 @@
+@import "bootstrap_variables";
+@import "bootstrap/mixins/nav-vertical-align";
+@import "bootstrap/mixins/tab-focus";
+@import "bootstrap/mixins/vendor-prefixes";
+@import "bootstrap/mixins/forms";
+@import "bootstrap/forms";
+@import "bootstrap/navbar";
+@import "compass/utilities/sprites";
+
+$bg-podmenu_aktywny_prawy-position: 100%;
+@import "../images/bg/*.png";
+
+// Pushes content below a fixed navigation bar
+#header-shim {
+  height: $navbar-height +1px;
+}
+
+.navbar {
+  z-index: 500;
+  overflow: visible;
+}
+
+//.navbar .nav > li > a {
+//  text-shadow: 0 -1px 0 #fff;
+//}
+
+// A configurations variables for this project
+//$navbarBackground:                #E5E5E5;
+//$navbarBackgroundHighlight:       #F4F4F4;
+//$navbarText:                      #454545;
+//$navbarLinkColor:                 #909090;
+//$navbarLinkColorHover:        #333;
+//$navbarLinkColorActive:       #000;
+
+$avatarImageSize: 36px !default;
+.navbar .nav > li > a.nav-avatar {
+  padding-top: floor($navbar-height - $avatarImageSize) / 2;
+  padding-bottom: floor($navbar-height - $avatarImageSize) / 2;
+  padding-left: 4px;
+  padding-right: 0px;
+}
+
+.nav-avatar img {
+  width: $avatarImageSize;
+  height: $avatarImageSize;
+}
+
+header .nav-brand {
+  font-family: Volkhov, serif;
+  font-weight: 700;
+}
+
+$menu-lg-side-padding: 26px;
+$menu-md-side-padding: 10px;
+
+.navbar-pspo {
+  @extend .navbar-default;
+  background: none;
+  border: none;
+  border-radius: inherit !important;
+  .navbar-collapse {
+    padding: 0;
+  }
+  ul.nav {
+    width: 100%;
+    li {
+      height: 38px;
+      //      width: percentage(1/6);
+      a {
+        @include background-image(linear-gradient(#D0D0D0, #969696));
+        margin-right: 1px;
+        padding: 0 0 0 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border: 1px solid #B1B1B1;
+        span {
+          padding-top: $navbar-padding-vertical;
+          padding-bottom: $navbar-padding-vertical;
+          //          padding-right: 5px + 1px;;
+          padding-right: $menu-md-side-padding + 5px + 1px;
+          padding-left: $menu-md-side-padding;
+          @media (min-width: $screen-lg-min) {
+            padding-right: $menu-lg-side-padding + 5px + 1px;
+            padding-left: $menu-lg-side-padding;
+          }
+          font-size: 16px;
+          color: #090909;
+          text-transform: lowercase;
+          text-decoration: none;
+          height: 38px;
+          text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
+
+          display: block;
+          background-position-x: right;
+          text-align: center;
+        }
+      }
+      a:hover {
+        @include background-image(linear-gradient(#ACAEAE, #5F6263));
+        border-color: #939698;
+        span {
+          color: #FFF;
+          text-shadow: rgba(45, 45, 45, 0.8) 0 -1px 0;
+        }
+      }
+    }
+    li.active {
+      a {
+        @include background-image(linear-gradient(#A8A9A9, #090909));
+        border-color: #949799;
+        span {
+          color: #FFF;
+          text-shadow: rgba(45, 45, 45, 0.8) 0 -1px 0;
+        }
+      }
+    }
+  }
+}
