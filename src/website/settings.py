@@ -45,7 +45,7 @@ ALLOWED_HOSTS = (
 )
 INTERNAL_IPS = ('127.0.0.1', '46.101.171.42')
 
-ADMINS = (("Janusz Skonieczny", "js@pspo.edu.pl"),)
+ADMINS = (("PSPO Admin", "pspoadmin@support.quatree.pl"),)
 DEFAULT_FROM_EMAIL = "www@pspo.edu.pl"
 SERVER_EMAIL = "www@pspo.edu.pl"
 
